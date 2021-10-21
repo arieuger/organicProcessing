@@ -31,14 +31,8 @@ void draw() {
   shape.endShape(CLOSE); 
   
   for (int i = 0; i < shape.getVertexCount(); i++) {
-    // shape.setFill(i, color(c1,(i <= 255 ? i : 255), c2));  
-    // shape.setFill(i, color(map(i, 1, shape.getVertexCount(), 50, 255),map(i, 1, shape.getVertexCount(), 10, 102), 0)); 
-    
-    float cRed = map(i, 1, shape.getVertexCount(), 50, 255);
-    float cGreen = map(i, 1, shape.getVertexCount(), 10, 102);
-    // shape.setFill(i, color(cRed,cGreen, 50));
-    
-    
+    float amt = map(i, 0, shape.getVertexCount(), 0, 1);
+    shape.setFill(i, lerpColor(color(31, 193, 233), color(233, 65, 31), amt));
   }
   
   shape(shape, 25, 25);
