@@ -8,6 +8,6 @@ void setup() {
 void draw() {
   background(255);
 
-  Bubble bubble = new Bubble(width/2, height/2);
+  Bubble bubble = new Bubble(mouseX, mouseY);
   bubble.draw(); //<>//
 }
