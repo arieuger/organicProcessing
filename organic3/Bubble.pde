@@ -16,8 +16,8 @@ class Bubble {
   }
   
   public void draw() {
-    translate(positionX, positionY);  // Posición de la mancha (y movimiento en el eje Y)
     shape = createShape();
+    shape.translate(positionX, positionY);  // Posición de la mancha (y movimiento en el eje Y)
     generateVertex();
     shape(shape, 25, 25);
   }
@@ -30,7 +30,12 @@ class Bubble {
       y = sin(angle * i) * rad;
       PVector p = new PVector(x, y).normalize(); // normalize() normaliza o valor a tamaño máximo 1
       float maxSize = map(height - mouseY, 0, height, 50, 200);
-      float n = map(noise(p.x * factor + frameCount * 0.01, p.y * factor + frameCount * 0.01), 0, 1, 10, maxSize);
+      float n = map(
+        noise(p.x * factor + frameCount * 0.01, p.y * factor + frameCount * 0.01),
+        0, 1, 10, maxSize);
+        
+      println(noise(p.x * factor + frameCount * 0.01, p.y * factor + frameCount * 0.01));
+        
       p.mult(n);    
       // shape.fill(100 - i / 10 - abs(p.y), (90 + i) - (p.y/4), 220);  // funciona
       shape.vertex(p.x, p.y);    
@@ -48,7 +53,10 @@ class Bubble {
     color orange2 = color(255,220,21);
     
     for (int i = 0; i < shape.getVertexCount(); i++) {
-      // float amtBlueRed = (mouseX + mouseY) / ((float) width + (float) height);      
+      // float amtBlueRed = (mouseX + mouseY) / ((float) width + (float) height);     
+      
+      // TODO: Si é estática, lerp en relación á posición da bola
+      
       float amtBlueRed = mouseY / (float) height;
       float amt = map(i, 0, shape.getVertexCount(), 0, 1);
       // shape.setFill(i, lerpColor(blue1, blue2, amt));
